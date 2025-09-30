@@ -47,7 +47,6 @@ fill('LIGHTPINK');
 triangle(-s/2, h/3, s/2, h/3, 0, -2*h/3);
 pop();
 
-
     }
   }
 }
