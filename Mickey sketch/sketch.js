@@ -14,7 +14,7 @@ function draw() {
   circle(191,188,136);
 
   //face
-  fill('#F4E2C2');
+  fill('#d7cab3ff');
   circle(341,230,170);
 
   //eyes
