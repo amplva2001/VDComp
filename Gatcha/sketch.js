@@ -17,7 +17,7 @@ function setup() {
   button.position(10, 10);
 
   button.mousePressed(() => {
-    let n = int(random(1, 5));
+    let n = int(random(1, 6));
     let imgName = n + ".png";
     face = loadImage(imgName);
   });  
