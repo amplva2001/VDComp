@@ -13,7 +13,7 @@ function preload() {
 function setup() {
   createCanvas(400, 400);
 
-  let button = createButton('🤗');
+  let button = createButton('🥸');
   button.position(10, 10);
 
   button.mousePressed(() => {
