@@ -5,7 +5,7 @@ function preload() {
   body = loadImage('body.png');
 
   // get random face
-  let n = int(random(1, 5));
+  let n = int(random(1, 6));
   let imgName = n + ".png";  
   face = loadImage(imgName);
 }
@@ -26,5 +26,5 @@ function setup() {
 function draw() {
   background("beige");
   image(body, 0, 0);
-  image(face, 132, 134);  
+  image(face, 65, 40);  
 }
