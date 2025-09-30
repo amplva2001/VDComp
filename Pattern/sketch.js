@@ -49,4 +49,10 @@ pop();
 
     }
   }
+function keyPressed() {
+  if (key === 's') {
+    saveGif('mySketch', 5);
+  }
+}
+
 }
