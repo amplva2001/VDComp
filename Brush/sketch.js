@@ -4,7 +4,7 @@ let offsets = [-8, -4, -2, 0];
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background('#000000ff');
-  strokeWeight(30);
+  strokeWeight(50);
 }
 
 function draw() {
