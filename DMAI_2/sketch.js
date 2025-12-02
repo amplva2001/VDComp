@@ -6,55 +6,52 @@ function preload() {
   // Preload images
   for (let i = 1; i <= IMAGES_COUNT; i++) {
     const fn = String(i).padStart(2, '0') + '.png';
-    imgs.push(loadImage(IMAGES_PATH + fn));
+    imgs.push(loadImage(IMAGES_PATH + fn,
+      () => console.log("Loaded " + fn),
+      () => console.error("Failed to load " + fn)
+    ));
   }
 }
 
 function setup() {
   createCanvas(800, 800);
-  noLoop();
   compose();
-}
 
-function mousePressed() {
-  compose(); // Make a new composition on mouse click
+  // Add a button to regenerate the collage
+  let btn = createButton("New Collage");
+  btn.position(10, 10);
+  btn.mousePressed(compose);
 }
 
 function compose() {
   background(240);
 
-  // Parameters for grid
-  let cols = 8;
-  let rows = 8;
-  let cellW = width / cols;
-  let cellH = height / rows;
+  let fragments = 80;             // How many pieces per canvas (try 100+ for even denser)
+  let minSize = 60, maxSize = 220; // Min/max size for collage fragments
 
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      // Randomly pick image and cut size
-      let img = random(imgs);
+  for (let i = 0; i < fragments; i++) {
+    let img = random(imgs);
 
-      // Instead of fitting image perfectly, draw a random crop
-      let cropW = cellW * random(0.8, 1.4);
-      let cropH = cellH * random(0.8, 1.4);
-      let x = c * cellW + random(-cellW * 0.2, cellW * 0.2);
-      let y = r * cellH + random(-cellH * 0.2, cellH * 0.2);
+    // Random destination on canvas
+    let x = random(width);
+    let y = random(height);
+    let w = random(minSize, maxSize);
+    let h = random(minSize, maxSize);
 
-      // Source crop from image, randomize
-      let sx = img.width * random(0.0, 0.5);
-      let sy = img.height * random(0.0, 0.5);
-      let sw = img.width * random(0.5, 1.0);
-      let sh = img.height * random(0.5, 1.0);
+    // Source crop from image, for "cut" and "zoom"
+    let cropFactorW = random(0.3, 0.9);
+    let cropFactorH = random(0.3, 0.9);
+    let sw = img.width * cropFactorW;
+    let sh = img.height * cropFactorH;
+    let sx = random(0, img.width - sw);
+    let sy = random(0, img.height - sh);
 
-      // Draw fragment on canvas
-      image(img, x, y, cropW, cropH, sx, sy, sw, sh);
-
-      // Optionally, skip some cells for the "cut away" look
-      if (random() < 0.1) {
-        fill(240);
-        noStroke();
-        rect(x, y, cropW, cropH);
-      }
-    }
+    // Draw cropped/zoomed part, possibly stretching
+    image(img, x, y, w, h, sx, sy, sw, sh);
   }
+}
+
+// Optional: You can keep mousePressed for another way to regenerate
+function mousePressed() {
+  compose();
 }
