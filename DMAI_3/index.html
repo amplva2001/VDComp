@@ -1,18 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brick Builder — Sadang Station</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <main>
+      <div id="stageWrap">
+        <canvas id="stage"></canvas>
+        <div id="caption">Sadang Station</div>
+      </div>
 
-    <title>Sketch</title>
+      <div id="paletteRow">
+        <div id="imagePalette" class="image-palette" aria-label="Image palette"></div>
+        <button id="useColorBtn" class="small">Use Color</button>
+      </div>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+      <div id="controlsRow">
+        <label>Width <input id="brickWidth" type="number" min="1" value="2"></label>
+        <label>Height <input id="brickHeight" type="number" min="1" value="1"></label>
+        <label>Cell <input id="cellSize" type="number" min="8" value="40"></label>
+        <input type="color" id="colorPicker" value="#b22222" title="Brick color">
+        <button id="exportPng">Export PNG</button>
+        <button id="downloadJson">Download JSON</button>
+        <input type="file" id="loadJsonFile" accept="application/json" style="display:none" />
+        <button id="loadJson">Load JSON</button>
+        <button id="clearBtn">Clear</button>
+      </div>
 
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-  </head>
+      <div id="hint">Click an image below to select it. Use ← → to rotate the brick. Left click to place, right click to remove.</div>
+    </main>
 
-  <body>
-    <script src="sketch.js"></script>
-  </body>
+    <script src="app.js"></script>
+  </div>
+</body>
 </html>
